@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Bootstrap Framework</title>
-	<meta name="layout" content="bootstrap">
+	<meta name="layout" content="main">
 </head>
 
 <body>
