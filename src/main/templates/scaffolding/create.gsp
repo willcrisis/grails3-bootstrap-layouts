@@ -44,6 +44,10 @@
 					</ul>
 				</bootstrap:alert>
 			</g:hasErrors>
+
+			<g:form resource="\${this.${propertyName}}" method="POST" class="form-horizontal">
+                <f:all bean="${propertyName}" />
+			</g:form>
 		</div>
 	</div>
     </body>

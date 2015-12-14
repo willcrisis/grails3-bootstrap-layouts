@@ -56,7 +56,7 @@ grails:
         encoding: UTF-8
     views:
         default:
-            codec: html
+            codec: none
         gsp:
             encoding: UTF-8
             htmlcodec: xml

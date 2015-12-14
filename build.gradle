@@ -72,6 +72,7 @@ dependencies {
     compile "org.grails.plugins:cache"
     compile "org.hibernate:hibernate-ehcache"
     compile "org.grails.plugins:scaffolding"
+    compile "org.grails.plugins:fields"
 
     compile "com.siprell.plugins:bootstrap-framework:1.0.3"
 

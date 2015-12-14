@@ -1,4 +1,4 @@
-package twitter.bootstrap.scaffolding
+package scaffolding
 
 import org.springframework.validation.Errors
 import org.springframework.validation.FieldError
