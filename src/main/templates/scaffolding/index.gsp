@@ -6,23 +6,39 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#list-${propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="\${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-${propertyName}" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="\${flash.message}">
-                <div class="message" role="status">\${flash.message}</div>
-            </g:if>
-            <f:table collection="\${${propertyName}List}" />
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="well">
+				<ul class="nav nav-pills">
+					<li role="presentation" class="active">
+						<g:link action="list">
+							<i class="fa fa-list"></i>
+							<g:message code="default.list.label" args="[entityName]" />
+						</g:link>
+					</li>
+					<li role="presentation">
+						<g:link action="create">
+							<i class="fa fa-plus"></i>
+							<g:message code="default.create.label" args="[entityName]" />
+						</g:link>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="span9">
+			<div class="page-header">
+				<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			</div>
+			<g:if test="\${flash.message}">
+				<bootstrap:alert class="alert-info">\${flash.message}</bootstrap:alert>
+			</g:if>
 
-            <div class="pagination">
-                <g:paginate total="\${${propertyName}Count ?: 0}" />
-            </div>
-        </div>
+			<f:table collection="\${${propertyName}List}" />
+
+			<div class="pagination">
+				<g:paginate total="\${${propertyName}Count ?: 0}" />
+			</div>
+		</div>
+	</div>
     </body>
 </html>
