@@ -1,4 +1,4 @@
-package scaffolding
+package bootstrap
 
 class Address {
     String address1

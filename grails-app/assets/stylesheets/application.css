@@ -10,5 +10,6 @@
 *= require bootstrap-all
 *= require font-awesome-all
 *= require scaffolding
+*= require_tree .
 *= require_self
 */

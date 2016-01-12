@@ -27,7 +27,7 @@ plugins {
 }
 
 version "0.1"
-group "bootstrap.scaffolding"
+group "bootstrap.layouts"
 
 apply plugin: "spring-boot"
 apply plugin: "war"

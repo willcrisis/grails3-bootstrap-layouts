@@ -1,4 +1,4 @@
-package scaffolding
+package bootstrap
 
 import org.springframework.web.servlet.support.RequestContextUtils as RCU
 

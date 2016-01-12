@@ -19,3 +19,26 @@ if (typeof jQuery !== 'undefined') {
         });
     })(jQuery);
 }
+
+$(document).ready(function() {
+    loadMasks();
+});
+
+function loadMasks() {
+    $(".phone").mask("(00) 0000-0000");
+    $(".postalCode").mask("00000-000");
+    $('.money').maskMoney({thousands:'.', decimal:',', allowNegative: true});
+    $(".number").mask("0#", {maxlength: false});
+    $(".input-append.dateTime").datetimepicker({
+        pickSeconds: false,
+        language: "pt-BR",
+        format: 'dd/MM/yyyy HH:mm'
+    });
+    $(".input-append.dateTime .form-control").mask('00/00/0000 00:00');
+    $(".input-append.date").datetimepicker({
+        pickTime: false,
+        language: "pt-BR",
+        format: 'dd/MM/yyyy'
+    });
+    $(".input-append.date .form-control").mask('00/00/0000');
+}

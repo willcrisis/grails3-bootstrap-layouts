@@ -13,9 +13,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    %{--<link rel="shortcut icon" href="${asset.image(src: 'favicon.ico')}" type="image/x-icon">
+    <link rel="shortcut icon" href="${asset.image(src: 'favicon.ico')}" type="image/x-icon">
     <link rel="apple-touch-icon" href="${asset.image(src: 'images', file: 'apple-touch-icon.png')}">
-    <link rel="apple-touch-icon" sizes="114x114" href="${asset.image(src: 'images', file: 'apple-touch-icon-retina.png')}">--}%
+    <link rel="apple-touch-icon" sizes="114x114" href="${asset.image(src: 'images', file: 'apple-touch-icon-retina.png')}">
     <g:layoutHead/>
 </head>
 
@@ -37,8 +37,7 @@
 
         <div class="collapse navbar-collapse" id="menu-principal">
             <ul class="nav navbar-nav">
-                <li role="presentation"
-                    <g:if test="${request.forwardURI == "${createLink(uri: '/')}"}">class="active"</g:if>>
+                <li role="presentation" <g:if test="${request.forwardURI == "${createLink(uri: '/')}"}">class="active"</g:if>>
                     <g:link uri="/">
                         Home
                     </g:link>

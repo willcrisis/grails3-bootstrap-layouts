@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: bootstrap.scaffolding
+        defaultPackage: bootstrap.layouts
 info:
     app:
         name: '@info.app.name@'

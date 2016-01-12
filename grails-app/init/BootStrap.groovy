@@ -1,5 +1,5 @@
-import scaffolding.Address
-import scaffolding.Person
+import bootstrap.Address
+import bootstrap.Person
 
 class BootStrap {
 

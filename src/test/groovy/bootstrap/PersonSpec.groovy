@@ -1,4 +1,4 @@
-package scaffolding
+package bootstrap
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
