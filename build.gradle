@@ -3,7 +3,7 @@ buildscript {
         grailsVersion = project.grailsVersion
         bootstrapFramework = [
                 version             : "3.3.6",
-                useIndividualJs: true,
+                useIndividualJs: false,
                 fontAwesome    : [
                         install: true,
                 ]

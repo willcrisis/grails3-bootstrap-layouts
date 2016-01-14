@@ -16,10 +16,9 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <bootstrap:linkAsButton action="edit" id="${person.id}" icon="pencil"><g:message code="default.button.edit.label" default="Edit" /></bootstrap:linkAsButton>
-                    <bootstrap:confirmDialog class="danger" yesClass="danger" onconfirm="\$(form).submit()" icon="trash-o" message="${g.message(code: 'default.delete.message', default: 'Are you sure?')}" styleId="modalDelete"><g:message code="default.button.delete.label" default="Delete"/></bootstrap:confirmDialog>
+                    <bootstrap:confirmation class="danger" yesClass="danger" onconfirm="\$(form).submit()" icon="trash-o" buttonText="${g.message(code: 'default.button.delete.label', default: 'Delete')}" styleId="modalDelete"><g:message code="default.button.delete.confirm.message" default="Are you sure?"/></bootstrap:confirmation>
                 </div>
             </div>
         </g:form>
-        </div>
     </body>
 </html>

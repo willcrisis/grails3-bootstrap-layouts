@@ -21,36 +21,7 @@
 
 <body role="document">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-principal"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${createLink(uri: '/')}">App</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="menu-principal">
-            <ul class="nav navbar-nav">
-                <li role="presentation" <g:if test="${request.forwardURI == "${createLink(uri: '/')}"}">class="active"</g:if>>
-                    <g:link uri="/">
-                        Home
-                    </g:link>
-                </li>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
-                    <li <g:if test="${c.logicalPropertyName == controllerName}">class="active"</g:if>>
-                        <g:link controller="${c.logicalPropertyName}">${c.naturalName}</g:link>
-                    </li>
-                </g:each>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<bootstrap:mainMenu />
 
 <div class="container-fluid">
     <g:layoutBody/>
