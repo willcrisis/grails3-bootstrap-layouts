@@ -19,11 +19,23 @@ class FormsTagLib {
 			out << g.message(error: error)
 			out << '</span>'
 		}
-		
 	}
 
 	def textField = { attrs ->
         out << writeField(attrs, 'text')
+	}
+
+    def select = { attrs ->
+        if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:select'")
+        if (!attrs.from) throw new GrailsTagException("Attribute 'from' required for tag 'bootstrap:select'")
+
+        if (!attrs.class) attrs.class = ''
+        attrs.class += ' form-control'
+        if (attrs.readonly) {
+            out << writeField(attrs, 'text')
+        } else {
+            out << g.select(attrs)
+        }
 	}
 
     def emailField = { attrs ->
@@ -45,36 +57,46 @@ class FormsTagLib {
         if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:textFieldLabel'")
         if (!attrs.label) throw new GrailsTagException("Attribute 'label' required for tag 'bootstrap:textFieldLabel'")
 
-		out << writeWrapperForTextField(attrs, 'textField')
+		out << writeWrapperForField(attrs, 'textField')
 	}
 
     def emailFieldLabel = { attrs ->
         if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:emailFieldLabel'")
         if (!attrs.label) throw new GrailsTagException("Attribute 'label' required for tag 'bootstrap:emailFieldLabel'")
 
-		out << writeWrapperForTextField(attrs, 'emailField')
+		out << writeWrapperForField(attrs, 'emailField')
 	}
 
     def dateFieldLabel = { attrs ->
         if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:dateFieldLabel'")
         if (!attrs.label) throw new GrailsTagException("Attribute 'label' required for tag 'bootstrap:dateFieldLabel'")
 
-		out << writeWrapperForTextField(attrs, 'dateField')
+		out << writeWrapperForField(attrs, 'dateField')
 	}
 
     def dateTimeFieldLabel = { attrs ->
         if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:dateFieldLabel'")
         if (!attrs.label) throw new GrailsTagException("Attribute 'label' required for tag 'bootstrap:dateFieldLabel'")
 
-		out << writeWrapperForDateField(attrs, 'date', 'dateTimeField')
+		out << writeWrapperForField(attrs, 'dateTimeField')
 	}
 
-    private def writeWrapperForTextField(def attrs, def field) {
+    def selectLabel = { attrs ->
+        if (!attrs.name) throw new GrailsTagException("Attribute 'name' required for tag 'bootstrap:selectLabel'")
+        if (!attrs.label) throw new GrailsTagException("Attribute 'label' required for tag 'bootstrap:selectLabel'")
+        if (!attrs.from) throw new GrailsTagException("Attribute 'from' required for tag 'bootstrap:selectLabel'")
+
+		out << writeWrapperForField(attrs, 'select')
+	}
+
+    private def writeWrapperForField(def attrs, def field) {
+        if (!attrs.default) attrs.default = attrs.label
+
         StringWriter output = new StringWriter()
         MarkupBuilder builder = new MarkupBuilder(output)
         builder.div(class: 'form-group') {
             label(class: 'col-sm-2 control-label', for: attrs.name) {
-                mkp.yieldUnescaped(g.message(code: "$attrs.label", default: "${attrs.remove('label')}"))
+                mkp.yieldUnescaped(g.message(code: "${attrs.remove('label')}", default: "${attrs.remove('default')}"))
                 if (attrs.required) {
                     span(class: 'required', '*')
                 }
@@ -98,12 +120,16 @@ class FormsTagLib {
     private def writeWrapperForDateField(def attrs, def type) {
         StringWriter output = new StringWriter()
         MarkupBuilder builder = new MarkupBuilder(output)
-        builder.div(class: "input-append ${type}") {
-            div(class: 'input-group') {
-                mkp.yieldUnescaped(writeField(attrs, 'text'))
-                span(class: 'input-group-addon add-on') {
-                    i(class: 'fa fa-fw fa-calendar', 'data-time-icon': 'fa fa-fw fa-clock-o', 'data-date-icon': 'fa fa-fw fa-calendar') {
-                        mkp.yieldUnescaped("&nbsp")
+        if (attrs.readonly) {
+            builder.print(writeField(attrs, 'text'))
+        } else {
+            builder.div(class: "input-append ${type}") {
+                div(class: 'input-group') {
+                    mkp.yieldUnescaped(writeField(attrs, 'text'))
+                    span(class: 'input-group-addon add-on') {
+                        i(class: 'fa fa-fw fa-calendar', 'data-time-icon': 'fa fa-fw fa-clock-o', 'data-date-icon': 'fa fa-fw fa-calendar') {
+                            mkp.yieldUnescaped("&nbsp")
+                        }
                     }
                 }
             }
