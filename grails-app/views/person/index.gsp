@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 				<g:each in="${personList}" var="person">
-					<tr onclick="">
+					<tr>
 						<td><g:link action="show" id="${person.id}">${person.firstName} ${person.lastName}</g:link></td>
 						<td>${person.email}</td>
 						<td><g:formatDate type="date" style="MEDIUM" date="${person.dateOfBirth}" /></td>
