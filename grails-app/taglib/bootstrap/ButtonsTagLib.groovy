@@ -47,7 +47,7 @@ class ButtonsTagLib {
         builder.button(attrs) {
             if (attrs.icon && !attrs.icon.equals('none')) {
                 i(class: "fa fa-fw fa-${attrs.remove('icon')}") {
-                    mkp.yieldUnescaped("&nbsp")
+                    mkp.yieldUnescaped("")
                 }
             }
             mkp.yieldUnescaped(body())
@@ -59,9 +59,9 @@ class ButtonsTagLib {
         StringWriter output = new StringWriter()
         def builder = new MarkupBuilder(output)
         builder.a(attrs) {
-            if (attrs.icon) {
+            if (attrs.icon && !attrs.icon.equals('none')) {
                 i(class: "fa fa-fw fa-${attrs.remove('icon')}") {
-                    mkp.yieldUnescaped("&nbsp")
+                    mkp.yieldUnescaped("")
                 }
             }
             mkp.yieldUnescaped(body())

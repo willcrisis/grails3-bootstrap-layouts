@@ -29,11 +29,11 @@ class MainMenuTagLib {
                         ul(class: 'nav navbar-nav') {
                             grailsApplication.controllerClasses.sort { it.fullName }.each { c ->
                                 def attrsLi = [role: 'presentation']
-                                if (c.logicalPropertyName == params.controllerName) {
+                                if (c.logicalPropertyName == controllerName) {
                                     attrsLi.class = 'active'
                                 }
                                 li(attrsLi) {
-                                    mkp.yieldUnescaped(g.link(controller: c.logicalPropertyName, c.naturalName.replace(' Controller', '')))
+                                    mkp.yieldUnescaped(g.link(controller: c.logicalPropertyName, g.message(code: "${c.naturalName}.label", default: c.name)))
                                 }
                             }
                         }

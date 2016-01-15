@@ -26,7 +26,7 @@
 					<tr onclick="">
 						<td><g:link action="show" id="${person.id}">${person.firstName} ${person.lastName}</g:link></td>
 						<td>${person.email}</td>
-						<td><g:formatDate type="date" date="${person.dateOfBirth}" /></td>
+						<td><g:formatDate type="date" style="MEDIUM" date="${person.dateOfBirth}" /></td>
 						<td><g:formatNumber type="number" number="${person.age}" /></td>
 						<td class="actions">
 							<bootstrap:dialog class="primary btn-xs" styleId="dialog-show-${person.id}" icon="search" title="${message(code: 'default.show.label', args: [entityName], default: 'Show {0}')}" >
