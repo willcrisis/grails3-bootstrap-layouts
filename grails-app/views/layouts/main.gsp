@@ -20,13 +20,11 @@
 </head>
 
 <body role="document">
+    <bootstrap:mainMenu />
 
-<bootstrap:mainMenu />
-
-<div class="container-fluid">
-    <g:layoutBody/>
-</div>
-
+    <div class="container-fluid">
+        <g:layoutBody/>
+    </div>
 </body>
 
 </html>

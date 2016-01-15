@@ -46,6 +46,7 @@ abstract class BaseController<T> {
 
     @Transactional
     def save() {
+        println resourceName
         if(handleReadOnly()) {
             return
         }
@@ -111,7 +112,7 @@ abstract class BaseController<T> {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: "${resourceClassName}.label".toString(), default: resourceClassName), getAttributeWhenSavedOrDeleted(instance)])
+                flash.message = message(code: 'default.updated.message', args: [message(code: "${resourceName}.label".toString(), default: resourceClassName), getAttributeWhenSavedOrDeleted(instance)])
                 redirect instance
             }
             '*'{
@@ -140,7 +141,7 @@ abstract class BaseController<T> {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: "${resourceClassName}.label".toString(), default: resourceClassName), getAttributeWhenSavedOrDeleted(instance)])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: "${resourceName}.label".toString(), default: resourceClassName), getAttributeWhenSavedOrDeleted(instance)])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT } // NO CONTENT STATUS CODE
@@ -185,7 +186,7 @@ abstract class BaseController<T> {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: '${propertyName}.label', default: '${className}'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: "${resourceName}.label", default: resourceClassName), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

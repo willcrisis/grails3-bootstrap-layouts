@@ -11,7 +11,7 @@ class MainMenuTagLib {
         builder.nav(class: 'navbar navbar-inverse navbar-fixed-top') {
             div(class: 'container-fluid') {
                 div(class: 'navbar-header') {
-                    button(type: 'button', class: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#main-menu') {
+                    a(class: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#main-menu') {
                         span(class: 'sr-only', 'Toggle navigation')
                         span(class: 'icon-bar', '')
                         span(class: 'icon-bar', '')
@@ -22,13 +22,13 @@ class MainMenuTagLib {
                     }
                 }
 
-                div(class: 'collapse navbar-collapse', id: 'main-menu') {
-                    ul(class: 'nav navbar-nav') {
-                        if (body()) {
-                            mkp.yieldUnescaped(body())
-                        } else {
+                if (body()) {
+                    mkp.yieldUnescaped(body())
+                } else {
+                    div(class: 'collapse navbar-collapse', id: 'main-menu') {
+                        ul(class: 'nav navbar-nav') {
                             grailsApplication.controllerClasses.sort { it.fullName }.each { c ->
-                                def attrsLi = [role:'presentation']
+                                def attrsLi = [role: 'presentation']
                                 if (c.logicalPropertyName == params.controllerName) {
                                     attrsLi.class = 'active'
                                 }

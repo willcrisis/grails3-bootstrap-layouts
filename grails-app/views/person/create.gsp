@@ -3,6 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}" scope="request"/>
+    <g:set var="entityNamePlural" value="${message(code: 'person.plural.label', default: 'People')}" scope="request"/>
     <title><g:message code="default.create.label" args="[entityName]"/></title>
 </head>
 

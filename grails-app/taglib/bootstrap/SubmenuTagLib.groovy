@@ -88,7 +88,7 @@ class SubmenuTagLib {
     private def renderListButton() {
         return g.link(action: 'index') {
             out << '<i class="fa fa-fw fa-list"></i>'
-            out << g.message(code: 'default.list.label', args: [request.entityName])
+            out << g.message(code: 'default.list.label', args: [request.entityNamePlural])
         }
     }
 
