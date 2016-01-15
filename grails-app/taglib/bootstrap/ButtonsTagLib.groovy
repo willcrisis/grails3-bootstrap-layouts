@@ -45,7 +45,7 @@ class ButtonsTagLib {
         def builder = new MarkupBuilder(output)
         attrs.type = type
         builder.button(attrs) {
-            if (attrs.icon) {
+            if (attrs.icon && !attrs.icon.equals('none')) {
                 i(class: "fa fa-fw fa-${attrs.remove('icon')}") {
                     mkp.yieldUnescaped("&nbsp")
                 }

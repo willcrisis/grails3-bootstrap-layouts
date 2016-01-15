@@ -14,8 +14,7 @@
 		<bootstrap:table>
 			<thead>
 				<tr>
-					<th><g:message code="person.firstName.label" default="First Name" /></th>
-					<th><g:message code="person.lastName.label" default="Last Name" /></th>
+					<th><g:message code="person.name.label" default="Name" /></th>
 					<th><g:message code="person.email.label" default="E-mail" /></th>
 					<th><g:message code="person.dateOfBirth.label" default="Date Of Birth" /></th>
 					<th><g:message code="person.age.label" default="Age" /></th>
@@ -25,12 +24,33 @@
 			<tbody>
 				<g:each in="${personList}" var="person">
 					<tr onclick="">
-						<td><g:link action="show" id="${person.id}">${person.firstName}</g:link></td>
-						<td>${person.lastName}</td>
+						<td><g:link action="show" id="${person.id}">${person.firstName} ${person.lastName}</g:link></td>
 						<td>${person.email}</td>
-						<td>${person.dateOfBirth}</td>
-						<td>${person.age}</td>
-						<td class="actions"></td>
+						<td><g:formatDate type="date" date="${person.dateOfBirth}" /></td>
+						<td><g:formatNumber type="number" number="${person.age}" /></td>
+						<td class="actions">
+							<bootstrap:dialog class="primary btn-xs" styleId="dialog-show-${person.id}" icon="search" title="${message(code: 'default.show.label', args: [entityName], default: 'Show {0}')}" >
+								<div class="form-horizontal">
+									<g:render template="form" model="[readonly: 'readonly', person: person]"/>
+								</div>
+							</bootstrap:dialog>
+
+							<bootstrap:modal styleId="dialog-delete-${person.id}" icon="trash" class="danger btn-xs">
+								<g:form resource="${person}" method="DELETE" class="form-horizontal">
+                                    <bootstrap:modalHeader><g:message code="default.button.delete.label"/></bootstrap:modalHeader>
+
+                                    <bootstrap:modalBody>
+                                        <g:message code="default.button.delete.confirm.message"/>
+                                        <g:render template="form" model="[readonly: 'readonly', person: person]"/>
+                                    </bootstrap:modalBody>
+
+                                    <bootstrap:modalFooter>
+                                        <bootstrap:button data-dismiss="modal"><g:message code="default.boolean.no" default="No" /></bootstrap:button>
+                                        <bootstrap:submitButton class="danger" icon="none"><g:message code="default.boolean.yes" default="Yes"/></bootstrap:submitButton>
+                                    </bootstrap:modalFooter>
+								</g:form>
+							</bootstrap:modal>
+						</td>
 					</tr>
 				</g:each>
 			</tbody>
